@@ -22,7 +22,7 @@ A powerful, automated download manager with a beautiful GUI for downloading file
 
 ### Option 1: Use the Standalone App (Recommended)
 
-1. Download `RepacksDownloader.exe` from [Releases](../../releases)
+1. Download `Repacks.Manager.exe` from [Releases](../../releases)
 2. Run the executable - no installation needed!
 3. Use the GUI to download files
 
@@ -38,7 +38,7 @@ A powerful, automated download manager with a beautiful GUI for downloading file
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/repacks-downloader.git
+git clone https://github.com/yourusername/Repack-Manager.git
 cd repacks-downloader
 
 # Install dependencies
@@ -260,3 +260,4 @@ For issues, questions, or suggestions:
 ---
 
 **Made with ❤️ for efficient file management**
+
