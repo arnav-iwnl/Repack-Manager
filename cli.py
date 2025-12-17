@@ -483,20 +483,36 @@ def click_download_button(driver: webdriver.Chrome, page_url: str, download_dir:
             return "SESSION_EXPIRED"
         return False
 
+
+URL_REGEX = re.compile(
+    r"https?://[^\s<>\"]+",
+    re.IGNORECASE,
+)
+
 def read_urls_from_txt(file_path: str) -> list[str]:
-    """Read non-empty, non-comment lines from a text file."""
-    urls = []
+    """Read and extract URLs from a text file, ignoring comments and markdown."""
+    urls: list[str] = []
+
     try:
         with open(file_path, "r", encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith("#"):
-                    urls.append(line)
+            for raw_line in f:
+                line = raw_line.strip()
+
+                # Skip empty lines and comments
+                if not line or line.startswith("#"):
+                    continue
+
+                # Extract URLs from the line
+                found_urls = URL_REGEX.findall(line)
+                urls.extend(found_urls)
+
         console.print(f"[cyan]📄 Loaded {len(urls)} URLs from {file_path}[/cyan]")
+
     except FileNotFoundError:
         console.print(f"[red]⚠️ File not found: {file_path}[/red]")
     except Exception as e:
         console.print(f"[red]Error reading {file_path}: {e}[/red]")
+
     return urls
 
 # def extract_rar(file_path: Path, extract_dir: Path, overwrite: bool = True) -> bool:
